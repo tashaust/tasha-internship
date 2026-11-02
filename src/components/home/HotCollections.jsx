@@ -2,6 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
+
+function App() {
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections');
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    return (
+        <div>
+            <button onClick={fetchData}>Fetch Data</button>
+        </div>
+    );
+}
 
 const HotCollections = () => {
   return (
