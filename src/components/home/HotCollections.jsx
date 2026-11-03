@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -13,7 +17,6 @@ useEffect(() => {
         "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
       );
 
-      console.log(response.data);
       setCollections(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -22,6 +25,13 @@ useEffect(() => {
 
   fetchData();
 }, []);
+
+   const options = {
+        items: 4,
+        nav: true, 
+        autoplay: false,
+        loop: true,
+    };
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -33,7 +43,9 @@ useEffect(() => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {collections.map((collection, index) => (
+          return (
+            <OwlCarousel className='owl-theme' {...options}>
+              {collections.map((collection, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft_coll">
                 <div className="nft_wrap">
@@ -51,11 +63,13 @@ useEffect(() => {
                   <Link to="/explore">
                     <h4>{collection.title}</h4>
                   </Link>
-                  <span>{collection.code}</span>
+                  <span>ERC-{collection.code}</span>
                 </div>
               </div>
             </div>
           ))}
+            </OwlCarousel>
+          );
         </div>
       </div>
     </section>
