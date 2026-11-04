@@ -10,3 +10,43 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+/* Skeleton loading container */
+.skeleton__card {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: #d3d3d3;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+/* Shimmer animation */
+.skeleton__card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.65),
+    transparent
+  );
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    left: 150%;
+  }
+}
+
+@media (max-width: 600px) {
+  .skeleton__card {
+    height: 300px;
+  }
+}
