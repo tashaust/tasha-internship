@@ -1,7 +1,7 @@
-import React from "react";
+
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
@@ -11,18 +11,19 @@ const HotCollections = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections",
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
         );
 
         setCollections(response.data);
-        setLoading(false);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching collections:", error);
+      } finally {
+        setLoading(true);
       }
-    }
+    };
 
     fetchData();
   }, []);
@@ -55,26 +56,29 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {loading ? (
+        </div>
+        {loading ? (
           <div className="row">
             {new Array(4).fill(0).map((_, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+              <div
+                className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                key={index}
+              >
                 <div className="skeleton__card"></div>
               </div>
-              ))}
+            ))}
           </div>
-          ) : (
-          {collections.length > 0 && (
+        ) : collections.length > 0 ? (
           <OwlCarousel className="owl-theme" {...options}>
             {collections.map((collection, index) => (
-              <div key={index}>
+              <div key={collection.id || index}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
                       <img
                         src={collection.nftImage}
                         className="lazy img-fluid"
-                        alt=""
+                        alt={collection.title || "NFT collection"}
                       />
                     </Link>
                   </div>
@@ -83,7 +87,7 @@ const HotCollections = () => {
                       <img
                         className="lazy pp-coll"
                         src={collection.authorImage}
-                        alt=""
+                        alt={collection.title || "Collection author"}
                       />
                     </Link>
                     <i className="fa fa-check"></i>
@@ -98,8 +102,11 @@ const HotCollections = () => {
               </div>
             ))}
           </OwlCarousel>
-          )}
+        ) : (
+          <div className="text-center">
+            <p>No collections available.</p>
           </div>
+        )}
       </div>
     </section>
   );
