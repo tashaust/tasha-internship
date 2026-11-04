@@ -21,7 +21,7 @@ const HotCollections = () => {
       } catch (error) {
         console.error("Error fetching collections:", error);
       } finally {
-        setLoading(true);
+        setLoading(false);
       }
     };
 
