@@ -78,7 +78,7 @@ useEffect(() => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">{item.countdown}</div>
+                <div className="de_countdown">{item.expiryDate}</div>
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
                     <div className="nft__item_buttons">
@@ -117,9 +117,11 @@ useEffect(() => {
                   </div>
                 </div>
               </div>
+              </div>
           ))}
           </OwlCarousel>
-        )}
+        ) : null}
+      </div>
       </div>
     </section>
   );
