@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const TopSellers = () => {
 const [sellers, setSellers] = useState([]);
+const [loading, setLoading] = useState(true);
 
 useEffect(() => {
   const fetchData = async () => {
@@ -14,7 +15,9 @@ useEffect(() => {
       setSellers(response.data);
     } catch (error) {
       console.error("Error fetching top sellers:", error);
-    } 
+    } finally {
+      setLoading(false);
+    }
   };
 
   fetchData();
@@ -32,6 +35,15 @@ useEffect(() => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
+          {loading ? (
+            <div className="row">
+          {new Array(4).fill(0).map((_, index) => (
+            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+              <div className="skeleton__card"></div>
+              </div>
+            ))}
+          </div>
+          ) : sellers.length > 0 ? (
               {sellers.map((seller, index) => (
                 <li key={index}>
                   <div className="author_list_pp">
@@ -50,7 +62,7 @@ useEffect(() => {
                   </div>
                 </li>
               ))}
-            </ol>
+          ) : null}
           </div>
         </div>
       </div>
