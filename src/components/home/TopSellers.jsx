@@ -42,7 +42,7 @@ const TopSellers = () => {
                     className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                     key={index}
                   >
-                    <div className="skeleton__card"></div>
+                    <div className="skeleton__card--sellers"></div>
                   </div>
                 ))}
               </div>
