@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { FOCUSABLE_SELECTOR } from "@testing-library/user-event/dist/utils";
 
 const TopSellers = () => {
   const [sellers, setSellers] = useState([]);
@@ -37,12 +38,18 @@ const TopSellers = () => {
           <div className="col-md-12">
             {loading ? (
               <div className="row">
-                {new Array(4).fill(0).map((_, index) => (
+                {new Array(12).fill(0).map((_, index) => (
                   <div
                     className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                     key={index}
                   >
-                    <div className="skeleton__card--sellers"></div>
+                    <div className="skeleton__seller">
+                      <div className="skeleton__avatar"></div>
+                      <div className="skeleton__info">
+                        <div className="skeleton__name"></div>
+                        <div className="skeleton__price"></div>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -55,7 +62,6 @@ const TopSellers = () => {
                         <img
                           className="lazy pp-author"
                           src={seller.authorImage}
-                          alt={seller.authorName || "Seller"}
                         />
                         <i className="fa fa-check"></i>
                       </Link>
