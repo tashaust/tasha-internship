@@ -7,6 +7,7 @@ const ExploreItems = () => {
   const [items, setItems] = useState([]);
   const [displayedItems, setDisplayedItems] = useState(8);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,14 +29,27 @@ const ExploreItems = () => {
     setDisplayedItems(displayedItems + 4);
   };
 
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  };
+
+  const sortedItems = [...items];
+  if (filter === "low-to-high") {
+    sortedItems.sort((a, b) => a.price - b.price);
+  } else if (filter === "high-to-low") {
+    sortedItems.sort((a, b) => b.price - a.price);
+  } else if (filter === "likes-high-to-low") {
+    sortedItems.sort((a, b) => b.likes - a.likes);
+  }
+
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select value={filter} onChange={handleFilterChange} id="filter-items">
           <option value="">Default</option>
-          <option value="price_low_to_high">Price, Low to High</option>
-          <option value="price_high_to_low">Price, High to Low</option>
-          <option value="likes_high_to_low">Most liked</option>
+          <option value="low-to-high">Price, Low to High</option>
+          <option value="high-to-low">Price, High to Low</option>
+          <option value="likes-high-to-low">Most liked</option>
         </select>
       </div>
 
@@ -49,7 +63,7 @@ const ExploreItems = () => {
         </div>
       ) : (
         <div className="row">
-          {items.slice(0, displayedItems).map((item, index) => (
+          {sortedItems.slice(0, displayedItems).map((item, index) => (
             <div
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
