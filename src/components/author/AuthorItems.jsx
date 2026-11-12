@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 const AuthorItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { authorId } = useParams();
+
+  console.log(authorId);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=73855012",
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`,
         );
         setItems(response.data);
       } catch (error) {
@@ -35,7 +38,8 @@ const AuthorItems = () => {
             ))}
           </div>
         ) : (
-          (items.nftCollection || []).map((item, index) => (
+          <div className="row">
+          {(items.nftCollection || []).map((item, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
@@ -82,7 +86,8 @@ const AuthorItems = () => {
                 </div>
               </div>
             </div>
-          ))
+          ))}
+          </div>
         )}
       </div>
     </div>
