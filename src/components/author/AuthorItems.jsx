@@ -7,8 +7,6 @@ const AuthorItems = () => {
   const [loading, setLoading] = useState(true);
   const { authorId } = useParams();
 
-  console.log(authorId);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,7 +22,9 @@ const AuthorItems = () => {
     };
 
     fetchData();
-  }, []);
+  }, [authorId]);
+
+  console.log("Author image:", items?.authorImage);
 
   return (
     <div className="de_tab_content">
