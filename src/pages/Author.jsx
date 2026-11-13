@@ -54,7 +54,7 @@ const Author = () => {
                           {items.authorName}
                           <span className="profile_username">{items.authorUsername}</span>
                           <span id="wallet" className="profile_wallet">
-                            {items.authorWallet}
+                            {items.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -65,7 +65,7 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{items.Followers} followers</div>
+                      <div className="profile_follower">{items.followers} followers</div>
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
