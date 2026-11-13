@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import AuthorItems from "../components/author/AuthorItems";
+import authorBanner from "../images/author_banner.jpg";
 
 const Author = () => {
   const [items, setItems] = useState([]);
@@ -35,7 +36,7 @@ const Author = () => {
           aria-label="section"
           className="text-light"
           data-bgimage="url(images/author_banner.jpg) top"
-          style={{ background: `url(${items.authorBanner}) top` }}
+          style={{ background: `url(${authorBanner}) top` }}
         ></section>
 
         <section aria-label="section">

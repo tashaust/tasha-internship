@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 const AuthorItems = ({ items, loading }) => {
+  
 
   return (
     <div className="de_tab_content">
