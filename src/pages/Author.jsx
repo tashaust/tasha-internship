@@ -26,6 +26,8 @@ const Author = () => {
     fetchData();
   }, [authorId]);
 
+  console.log(items);
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -52,7 +54,7 @@ const Author = () => {
                       <div className="profile_name">
                         <h4>
                           {items.authorName}
-                          <span className="profile_username">{items.authorUsername}</span>
+                          <span className="profile_username">@{items.tag}</span>
                           <span id="wallet" className="profile_wallet">
                             {items.address}
                           </span>
