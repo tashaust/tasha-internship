@@ -70,7 +70,7 @@ const ItemDetails = () => {
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to={`/author/${AuthorId}`}></Link>
                         </div>
                       </div>
                     </div>
