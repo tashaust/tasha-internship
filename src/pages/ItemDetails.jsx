@@ -17,7 +17,7 @@ const ItemDetails = () => {
       } catch (error) {
         console.error("Error fetching item details:", error);
       } finally {
-        setLoading(true);
+        setLoading(false);
       }
     };
 
@@ -37,15 +37,18 @@ const ItemDetails = () => {
             <div className="row">
               {loading ? (
                 <>
-                  <div className="skeleton__card"></div>
-                  <div className="skeleton__author">
-                    <div className="skeleton__avatar"></div>
-                    <div className="skeleton__description">
-                      <div className="skeleton__name"></div>
-                      <div className="skeleton__price"></div>
-                      <div className="skeleton__views"></div>
-                    </div>
-                  </div>
+              <div className="col-md-6">
+              <div className="skeleton__card"></div>
+             </div>
+              <div className="col-md-6">
+              <div className="skeleton__name"></div>
+              <div className="skeleton__views"></div>
+              <div className="skeleton__likes"></div>
+              <div className="skeleton__description"></div>
+              <div className="skeleton__avatar"></div>
+              <div className="skeleton__author"></div>
+              <div className="skeleton__price"></div>
+            </div>
                 </>
               ) : (
                 <>
