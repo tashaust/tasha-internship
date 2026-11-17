@@ -22,7 +22,8 @@
   margin-bottom: 25px;
 }
 
-.skeleton__seller {
+.skeleton__seller,
+.skeleton__author {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -43,6 +44,12 @@
   gap: 6px;
 }
 
+.skeleton__description {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+}
+
 .skeleton__name {
   width: 70px;
   height: 10px;
@@ -50,7 +57,7 @@
   border-radius: 2px;
 }
 
-.skeleton__price {
+.skeleton__price, .skeleton__views {
   width: 40px;
   height: 10px;
   background-color: #e0e0e0;
@@ -61,7 +68,10 @@
 .skeleton__card::before,
 .skeleton__avatar::before,
 .skeleton__name::before,
-.skeleton__price::before {
+.skeleton__price::before,
+.skeleton__author::before,
+.skeleton__description::before,
+.skeleton__views::before {
   content: "";
   position: absolute;
   top: 0;
