@@ -8,6 +8,7 @@ const Explore = () => {
   }, []);
 
   return (
+    <div data-aos="fade-in">
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
@@ -37,6 +38,7 @@ const Explore = () => {
           </div>
         </section>
       </div>
+    </div>
     </div>
   );
 };
