@@ -17,7 +17,9 @@ const Home = () => {
         <div id="top"></div>
         <Landing />
         <LandingIntro />
-        <HotCollections />
+        <div data-aos="fade-up">
+          <HotCollections />
+        </div>
         <NewItems />
         <TopSellers />
         <BrowseByCategory />

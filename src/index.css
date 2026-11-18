@@ -10,6 +10,7 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+@import "aos/dist/aos.css";
 
 /* Skeleton loading container */
 .skeleton__card {
